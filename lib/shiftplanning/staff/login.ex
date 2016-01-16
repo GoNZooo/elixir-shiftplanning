@@ -1,11 +1,11 @@
-defmodule Shiftplanning.Login do
+defmodule Shiftplanning.Staff.Login do
   import Shiftplanning.Base, only: [request: 1]
 
-  def token(key \\ Application.get_env(:shiftplanning, :key),
-            username \\ Application.get_env(:shiftplanning, :username),
-            password \\ Application.get_env(:shiftplanning, :password),
-            headers \\ Shiftplanning.Defaults.headers,
-            api_url \\ Shiftplanning.Defaults.api_url) do
+  def get(key \\ Application.get_env(:shiftplanning, :key),
+          username \\ Application.get_env(:shiftplanning, :username),
+          password \\ Application.get_env(:shiftplanning, :password),
+          headers \\ Shiftplanning.Defaults.headers,
+          api_url \\ Shiftplanning.Defaults.api_url) do
     payload = %{key: key,
                 request: %{module: "staff.login",
                            method: "GET",
