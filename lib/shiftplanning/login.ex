@@ -11,7 +11,7 @@ defmodule Shiftplanning.Login do
                            method: "GET",
                            username: username,
                            password: password}}
-
+ 
     %HTTPoison.Response{body: body} = request(payload)
     response = Poison.decode!(body)
     response["token"]
