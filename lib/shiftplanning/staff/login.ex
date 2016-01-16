@@ -14,5 +14,7 @@ defmodule Shiftplanning.Staff.Login do
 
     %HTTPoison.Response{body: body} = request(payload)
     response = %{"status" => 1} = Poison.decode!(body)
+
+    response
   end
 end
