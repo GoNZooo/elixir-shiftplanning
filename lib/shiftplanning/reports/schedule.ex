@@ -12,11 +12,19 @@ defmodule Shiftplanning.Reports.Schedule do
     request(payload)
   end
 
+  def get_schedule_summary(start_date, end_date) do
+    get(start_date, end_date, "schedule_summary")
+  end
+
   def get_shift_confirmed(start_date, end_date) do
     get(start_date, end_date, "shift_confirmed")
   end
 
-  def get_schedule_summary(start_date, end_date) do
-    get(start_date, end_date, "schedule_summary")
+  def get_crib_sheet(start_date, end_date) do
+    get(start_date, end_date, "crib_sheet")
+  end
+
+  def get_shift_exchanges(start_date, end_date) do
+    get(start_date, end_date, "shift_exchanges")
   end
 end
