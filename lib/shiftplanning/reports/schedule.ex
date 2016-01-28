@@ -29,7 +29,7 @@ defmodule Shiftplanning.Reports.Schedule do
   end
 
   def get_open_shifts(start_date, end_date) do
-    get(start_date, end_date, "open_exchanges")
+    get(start_date, end_date, "open_shifts")
   end
 
   def get_position_summary(start_date, end_date) do
