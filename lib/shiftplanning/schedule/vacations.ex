@@ -16,4 +16,14 @@ defmodule Shiftplanning.Schedule.Vacations do
                  token \\ Shiftplanning.Cache.Token.cached) do
     get(start_date, end_date, "manage", token)
   end
+
+  def get_requested(start_date, end_date,
+                 token \\ Shiftplanning.Cache.Token.cached) do
+    get(start_date, end_date, "requested", token)
+  end
+
+  def get_upcoming(start_date, end_date,
+                 token \\ Shiftplanning.Cache.Token.cached) do
+    get(start_date, end_date, "upcoming", token)
+  end
 end
