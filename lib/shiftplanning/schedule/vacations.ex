@@ -1,8 +1,7 @@
 defmodule Shiftplanning.Schedule.Vacations do
   import Shiftplanning.Base, only: [request: 1]
 
-  def get(start_date, end_date, mode,
-          token \\ Shiftplanning.Cache.Token.cached) do
+  defp _get(start_date, end_date, mode, token) do
     payload = %{token: token,
                 request: %{module: "schedule.vacations",
                            method: "GET",
@@ -12,18 +11,23 @@ defmodule Shiftplanning.Schedule.Vacations do
     request(payload)
   end
 
-  def get_manage(start_date, end_date,
-                 token \\ Shiftplanning.Cache.Token.cached) do
-    get(start_date, end_date, "manage", token)
+  def get(start_date, end_date) do
+    get(:manage, start_date, end_date, Shiftplanning.Cache.Token.cached)
   end
 
-  def get_requested(start_date, end_date,
-                 token \\ Shiftplanning.Cache.Token.cached) do
-    get(start_date, end_date, "requested", token)
+  def get(mode, start_date, end_date) do
+    get(mode, start_date, end_date, Shiftplanning.Cache.Token.cached)
   end
 
-  def get_upcoming(start_date, end_date,
-                 token \\ Shiftplanning.Cache.Token.cached) do
-    get(start_date, end_date, "upcoming", token)
+  def get(:manage, start_date, end_date, token) do
+    _get(start_date, end_date, "manage", token)
+  end
+
+  def get(:requested, start_date, end_date, token) do
+    _get(start_date, end_date, "requested", token)
+  end
+
+  def get(:upcoming, start_date, end_date, token) do
+    _get(start_date, end_date, "upcoming", token)
   end
 end
