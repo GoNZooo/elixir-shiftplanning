@@ -1,8 +1,8 @@
 defmodule Shiftplanning.Reports.Schedule do
+  alias Shiftplanning.Cache.Token
   import Shiftplanning.Base, only: [request: 1]
 
-  defp get(start_date, end_date, type,
-           token \\ Shiftplanning.Cache.Token.cached) do
+  defp _get(start_date, end_date, type, token) do
     payload = %{token: token,
                 request: %{module: "reports.schedule",
                            method: "GET",
@@ -12,27 +12,35 @@ defmodule Shiftplanning.Reports.Schedule do
     request(payload)
   end
 
-  def get_schedule_summary(start_date, end_date) do
-    get(start_date, end_date, "schedule_summary")
+  def get(start_date, end_date) do
+    get(:schedule_summary, start_date, end_date, Token.cached)
   end
 
-  def get_shift_confirmed(start_date, end_date) do
-    get(start_date, end_date, "shift_confirmed")
+  def get(type, start_date, end_date) do
+    get(type, start_date, end_date, Token.cached)
   end
 
-  def get_crib_sheet(start_date, end_date) do
-    get(start_date, end_date, "crib_sheet")
+  def get(:schedule_summary, start_date, end_date, token) do
+    _get(start_date, end_date, "schedule_summary", token)
   end
 
-  def get_shift_exchanges(start_date, end_date) do
-    get(start_date, end_date, "shift_exchanges")
+  def get(:shift_confirmed, start_date, end_date, token) do
+    _get(start_date, end_date, "shift_confirmed", token)
   end
 
-  def get_open_shifts(start_date, end_date) do
-    get(start_date, end_date, "open_shifts")
+  def get(:crib_sheet, start_date, end_date, token) do
+    _get(start_date, end_date, "crib_sheet", token)
   end
 
-  def get_position_summary(start_date, end_date) do
-    get(start_date, end_date, "position_summary")
+  def get(:shift_exchanges, start_date, end_date, token) do
+    _get(start_date, end_date, "shift_exchanges", token)
+  end
+
+  def get(:open_shifts, start_date, end_date, token) do
+    _get(start_date, end_date, "open_shifts", token)
+  end
+
+  def get(:position_summary, start_date, end_date, token) do
+    _get(start_date, end_date, "position_summary", token)
   end
 end
