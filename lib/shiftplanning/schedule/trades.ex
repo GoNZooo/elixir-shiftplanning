@@ -2,7 +2,7 @@ defmodule Shiftplanning.Schedule.Trades do
   alias Shiftplanning.Cache.Token
   import Shiftplanning.Base, only: [request: 1]
 
-  defp _get(id, token) do
+  defp _get(token) do
     payload = %{token: token,
                 request: %{module: "schedule.trades",
                            method: "GET"}}
@@ -10,6 +10,6 @@ defmodule Shiftplanning.Schedule.Trades do
   end
 
   def get do
-    get(Token.cached)
+    _get(Token.cached)
   end
 end
