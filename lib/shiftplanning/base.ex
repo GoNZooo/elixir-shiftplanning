@@ -1,26 +1,25 @@
 defmodule Shiftplanning.Base do
+  alias Shiftplanning.Defaults
+
   def request(payload) do
-    request(payload,
-            Shiftplanning.Defaults.headers,
-            Shiftplanning.Defaults.api_url)
+    request(payload, Defaults.headers, Defaults.api_url)
   end
+
   def request(payload = %{request: %{module: "staff.login",
                                      method: "GET"}},
               headers,
               api_url) do
-    %HTTPoison.Response{body: body} = HTTPoison.post!(api_url,
-                                                      "data=#{Poison.encode!(payload)}",
-                                                      headers)
+    encoded_payload = "data=#{Poison.encode!(payload)}"
+    response = HTTPoison.post!(api_url, encoded_payload, headers)
+    %HTTPoison.Response{body: body} = response
     data = %{"status" => 1} = Poison.decode!(body)
     data["token"]
   end
 
-  def request(payload,
-              headers,
-              api_url) do
-    %HTTPoison.Response{body: body} = HTTPoison.post!(api_url,
-                                                      "data=#{Poison.encode!(payload)}",
-                                                      headers)
+  def request(payload, headers, api_url) do
+    encoded_payload = "data=#{Poison.encode!(payload)}"
+    response = HTTPoison.post!(api_url, encoded_payload, headers)
+    %HTTPoison.Response{body: body} = response
     data = %{"status" => 1} = Poison.decode!(body)
     data["data"]
   end
