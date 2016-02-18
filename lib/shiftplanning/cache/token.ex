@@ -1,7 +1,6 @@
 defmodule Shiftplanning.Cache.Token do
   def start_link do
-    Agent.start_link(fn -> Shiftplanning.Staff.Login.get end,
-    name: __MODULE__)
+    Agent.start_link(fn -> Shiftplanning.Staff.Login.get end, name: __MODULE__)
   end
 
   def cached do
