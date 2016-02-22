@@ -1,4 +1,4 @@
-def Shiftplanning.Schedule.ShiftRequests do
+defmodule Shiftplanning.Schedule.ShiftRequests do
   import Shiftplanning.Base, only: [request: 1]
   alias Shiftplanning.Cache.Token
 
