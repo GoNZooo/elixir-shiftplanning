@@ -11,6 +11,10 @@ defmodule Shiftplanning.Schedule.Schedules do
   end
 
   def get(perms) do
-    _get(perms, Token.cached)
+    get(perms, Token.cached)
+  end
+
+  def get(perms, token) do
+    _get(perms, token)
   end
 end
