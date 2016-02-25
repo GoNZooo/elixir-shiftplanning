@@ -1,10 +1,15 @@
 defmodule Shiftplanning.Base do
   alias Shiftplanning.Defaults
 
+  @spec request(map) :: map
   def request(payload) do
     request(payload, Defaults.headers, Defaults.api_url)
   end
 
+  @spec request(%{request: %{module: String.t,
+                             method: String.t}},
+                [{String.t, String.t}],
+                String.t) :: map
   def request(payload = %{request: %{module: "staff.login",
                                      method: "GET"}},
               headers,
@@ -16,6 +21,7 @@ defmodule Shiftplanning.Base do
     data["token"]
   end
 
+  @spec request(map, [{String.t, String.t}], String.t) :: map
   def request(payload, headers, api_url) do
     encoded_payload = "data=#{Poison.encode!(payload)}"
     response = HTTPoison.post!(api_url, encoded_payload, headers)
