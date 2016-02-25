@@ -29,16 +29,16 @@ defmodule Shiftplanning.Timeclock.Timeclocks do
     get(Token.cached)
   end
 
-  def get(token) do
-    _get(token)
-  end
-
   def get(%{schedule: schedule}) do
-    get(%{schedule: schedule}, token)
+    get(%{schedule: schedule}, Token.cached)
   end
 
   def get(%{employee: employee}) do
-    get(%{employee: employee}, token)
+    get(%{employee: employee}, Token.cached)
+  end
+
+  def get(token) do
+    _get(token)
   end
 
   def get(%{schedule: schedule}, token) do
