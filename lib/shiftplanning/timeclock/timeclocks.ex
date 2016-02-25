@@ -17,6 +17,14 @@ defmodule Shiftplanning.Timeclock.Timeclocks do
     request(payload)
   end
 
+  defp _get(%{employee: employee}, token) do
+    payload = %{token: token,
+                request: %{module: "timeclock.timeclocks",
+                           method: "GET",
+                           employee: employee}}
+    request(payload)
+  end
+
   def get do
     get(Token.cached)
   end
@@ -29,7 +37,15 @@ defmodule Shiftplanning.Timeclock.Timeclocks do
     get(%{schedule: schedule}, token)
   end
 
+  def get(%{employee: employee}) do
+    get(%{employee: employee}, token)
+  end
+
   def get(%{schedule: schedule}, token) do
     _get(%{schedule: schedule}, token)
+  end
+
+  def get(%{employee: employee}, token) do
+    _get(%{employee: employee}, token)
   end
 end
