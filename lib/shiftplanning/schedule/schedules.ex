@@ -10,10 +10,12 @@ defmodule Shiftplanning.Schedule.Schedules do
     request(payload)
   end
 
+  @spec get(1 | 0) :: 
   def get(perms) do
     get(perms, Token.cached)
   end
 
+  @spec get(1 | 0, String.t)
   def get(perms, token) do
     _get(perms, token)
   end
