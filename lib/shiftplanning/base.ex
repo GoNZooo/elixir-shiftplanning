@@ -1,7 +1,7 @@
 defmodule Shiftplanning.Base do
   alias Shiftplanning.Defaults
 
-  @spec request(map) :: map
+  @spec request(map) :: String.t | map
   def request(payload) do
     request(payload, Defaults.headers, Defaults.api_url)
   end
@@ -9,7 +9,7 @@ defmodule Shiftplanning.Base do
   @spec request(%{request: %{module: String.t,
                              method: String.t}},
                 [{String.t, String.t}],
-                String.t) :: map
+                String.t) :: String.t
   def request(payload = %{request: %{module: "staff.login",
                                      method: "GET"}},
               headers,
