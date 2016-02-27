@@ -2,6 +2,7 @@ defmodule Shiftplanning.Staff.Employee do
   alias Shiftplanning.Cache.Token
   import Shiftplanning.Base, only: [request: 1]
 
+  @spec _get(integer, String.t) :: map
   defp _get(eid, token) do
     payload = %{token: token,
                 request: %{module: "staff.employee",
@@ -10,7 +11,13 @@ defmodule Shiftplanning.Staff.Employee do
     request(payload)
   end
 
+  @spec get(integer) :: map
   def get(eid) do
-    _get(eid, Token.cached)
+    get(eid, Token.cached)
+  end
+
+  @spec get(integer, String.t) :: map
+  def get(eid, token) do
+    _get(eid, token)
   end
 end
