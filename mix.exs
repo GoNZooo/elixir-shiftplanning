@@ -29,6 +29,7 @@ defmodule Shiftplanning.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [{:poison, "~> 1.5"},
-     {:httpoison, "~> 0.8.0"}]
+     {:httpoison, "~> 0.8.0"},
+     {:dialyxir, "~> 0.3"}]
   end
 end
