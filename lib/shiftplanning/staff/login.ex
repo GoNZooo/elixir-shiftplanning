@@ -1,6 +1,7 @@
 defmodule Shiftplanning.Staff.Login do
   import Shiftplanning.Base, only: [request: 1]
 
+  @spec get(String.t, String.t, String.t) :: map
   def get(key \\ Application.get_env(:shiftplanning, :key),
           username \\ Application.get_env(:shiftplanning, :username),
           password \\ Application.get_env(:shiftplanning, :password)) do
