@@ -30,6 +30,11 @@ defmodule Shiftplanning.Schedule.Shifts do
     get(:confirm, start_date, end_date, Token.cached)
   end
 
+  @spec get(:location, String.t, String.t) :: map
+  def get(:location, start_date, end_date) do
+    get(:location, start_date, end_date, Token.cached)
+  end
+
   @spec get(:overview, String.t, String.t, String.t) :: map
   def get(:overview, start_date, end_date, token) do
     _get("overview", start_date, end_date, token)
@@ -38,5 +43,10 @@ defmodule Shiftplanning.Schedule.Shifts do
   @spec get(:confirm, String.t, String.t, String.t) :: map
   def get(:confirm, start_date, end_date, token) do
     _get("confirm", start_date, end_date, token)
+  end
+
+  @spec get(:location, String.t, String.t, String.t) :: map
+  def get(:location, start_date, end_date, token) do
+    _get("location", start_date, end_date, token)
   end
 end
